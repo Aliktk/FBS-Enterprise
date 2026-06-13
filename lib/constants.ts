@@ -6,6 +6,9 @@
  * Business renamed from "Al Farhan Technical Solutions" -> "Nexvolt Technical Services".
  */
 
+/** Public site origin (set NEXT_PUBLIC_SITE_URL in production / Vercel). */
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://alfarhantechnical.com";
+
 export const BRAND = {
   name: "Nexvolt Technical Services",
   short: "NEXVOLT",

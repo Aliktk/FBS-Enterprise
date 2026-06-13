@@ -72,4 +72,5 @@ export interface NewLeadInput {
   area: string;
   urgency: UrgencyLabel;
   note?: string | null;
+  trackingToken?: string | null;
 }

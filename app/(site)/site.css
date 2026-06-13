@@ -23,7 +23,7 @@
   --maxw:1240px;
   --ease:cubic-bezier(.22,1,.36,1);
 }
-.site-root{background:var(--bg);color:var(--ink);font-family:var(--font-sora),'Sora',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+.site-root{background:var(--bg);color:var(--ink);font-family:var(--font-sora),'Sora',system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
 .site-root *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 :where(section,header,footer){scroll-margin-top:88px}
@@ -251,6 +251,10 @@ html{scroll-behavior:smooth}
   background:rgba(255,255,255,.03);transition:.2s}
 .chipset .c:hover{border-color:var(--orange)}
 .chipset .c.sel{background:var(--orange);color:#1a0c02;border-color:var(--orange);font-weight:600}
+/* the option tiles + chips are <button>s for keyboard a11y — keep them looking identical */
+.svc-pick .opt{font-family:inherit;color:inherit;text-align:left;width:100%}
+.chipset .c{font-family:inherit;color:inherit}
+.svc-pick .opt:focus-visible,.chipset .c:focus-visible{outline:2px solid var(--orange);outline-offset:2px}
 .fieldrow{margin-top:18px}
 .fieldrow label{display:block;font-family:var(--font-space),'Space Grotesk',monospace;font-size:11px;letter-spacing:.16em;
   text-transform:uppercase;color:var(--faint);margin-bottom:9px}
@@ -583,3 +587,38 @@ html[data-theme="light"] .theme-tog .lbl-d{display:inline}
   .nav .links{display:none}
   .nav .status{display:none}
 }
+
+/* ---------- public testimonials ---------- */
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+@media(max-width:880px){.tgrid{grid-template-columns:1fr}}
+.tq{margin:0;padding:24px;border-radius:18px;border:1px solid var(--line-2);
+  background:rgba(15,23,48,.5);display:flex;flex-direction:column;gap:12px}
+.tq .stars{color:var(--orange);letter-spacing:2px;font-size:15px}
+.tq blockquote{margin:0;font-size:16px;line-height:1.55;color:var(--ink)}
+.tq figcaption{display:flex;flex-direction:column;margin-top:auto}
+.tq .nm{font-weight:600}
+.tq .mt{font-family:var(--font-space),'Space Grotesk',monospace;font-size:12px;color:var(--faint);margin-top:3px}
+html[data-theme="light"] .tq{background:rgba(255,255,255,.6)}
+
+/* ---------- /projects gallery ---------- */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+@media(max-width:880px){.pgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.pgrid{grid-template-columns:1fr}}
+.pcard{border-radius:16px;overflow:hidden;border:1px solid var(--line-2);background:rgba(15,23,48,.4)}
+.pcard-img{position:relative;aspect-ratio:4/3;background:var(--bg-3)}
+.pcard-img img{object-fit:cover}
+.pcard-meta{padding:14px 16px}
+.pcard-meta h3{font-size:16px;font-weight:600}
+.pcard-meta span{display:block;color:var(--faint);font-family:var(--font-space),'Space Grotesk',monospace;font-size:12px;margin-top:4px}
+html[data-theme="light"] .pcard{background:rgba(255,255,255,.55)}
+
+/* ---------- mobile nav ---------- */
+.nav-burger{display:none;background:none;border:1px solid var(--line-2);color:var(--ink);border-radius:10px;
+  width:40px;height:40px;align-items:center;justify-content:center;cursor:pointer;flex:0 0 auto}
+.nav-mobile{position:absolute;top:100%;left:0;right:0;background:rgba(7,10,18,.97);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);display:flex;flex-direction:column;padding:10px clamp(16px,4vw,40px) 18px}
+.nav-mobile a{padding:13px 4px;color:var(--muted);border-bottom:1px solid var(--line);font-size:15px}
+.nav-mobile a:last-child{border-bottom:none;color:var(--orange-2)}
+html[data-theme="light"] .nav-mobile{background:rgba(244,240,230,.97)}
+@media(min-width:761px){.nav-mobile{display:none!important}}
+@media(max-width:760px){.nav-burger{display:inline-flex}}
