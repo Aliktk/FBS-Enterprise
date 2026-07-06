@@ -21,7 +21,6 @@ export async function notifyOwner(lead: NewLeadInput): Promise<void> {
     return;
   }
   if (process.env.NODE_ENV !== "production") {
-    // eslint-disable-next-line no-console
     console.info(`[lead] ${lead.name} (${lead.phone}) — ${lead.service} / ${lead.area} / ${lead.urgency}`);
   }
 }

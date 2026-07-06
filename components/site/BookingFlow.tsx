@@ -7,6 +7,14 @@ import { createClient } from "@/lib/supabase/client";
 
 const STATUS_STAGE: Record<string, number> = { new: 1, contacted: 2, scheduled: 3, done: 4 };
 
+/** Van map position is a pure function of the tracking stage (no state needed). */
+function vanForStage(stage: number): { x: number; y: number } {
+  if (stage >= 4) return { x: 78, y: 34 };
+  if (stage >= 3) return { x: 80, y: 32 };
+  if (stage >= 2) return { x: 62, y: 46 };
+  return { x: 14, y: 78 };
+}
+
 /** PK mobile: 10–11 digits, optional leading 0 (mirrors the server schema). */
 const PHONE_RE = /^0?\d{10,11}$/;
 
@@ -41,7 +49,7 @@ export function BookingFlow({ enabledKeys, areas, whatsapp }: BookingFlowProps) 
   const [token, setToken] = useState<string | null>(null);
   const [stage, setStage] = useState(0);
   const [eta, setEta] = useState(18);
-  const [van, setVan] = useState({ x: 14, y: 78 });
+  const van = vanForStage(stage);
 
   // preselect from "Book this service" buttons
   useEffect(() => {
@@ -81,22 +89,15 @@ export function BookingFlow({ enabledKeys, areas, whatsapp }: BookingFlowProps) 
     return () => { active = false; clearInterval(iv); };
   }, [submitted, token]);
 
-  // ETA + van animation
+  // ETA countdown (van position is derived from stage, no state to sync here)
   useEffect(() => {
-    if (!submitted) return;
-    if (stage >= 4) {
-      setEta(0);
-      setVan({ x: 78, y: 34 });
-      return;
-    }
-    if (stage === 2) setVan({ x: 62, y: 46 });
-    if (stage === 3) setVan({ x: 80, y: 32 });
+    if (!submitted || stage >= 4) return;
     const iv = setInterval(() => setEta((e) => (e > 1 && stage < 3 ? e - 1 : e)), 900);
     return () => clearInterval(iv);
   }, [submitted, stage]);
 
   const reset = () => {
-    setSubmitted(false); setToken(null); setStage(0); setEta(18); setVan({ x: 14, y: 78 });
+    setSubmitted(false); setToken(null); setStage(0); setEta(18);
     setStep(0); setService(null); setArea(null); setName(""); setPhone(""); setErr("");
   };
 
@@ -252,7 +253,7 @@ export function BookingFlow({ enabledKeys, areas, whatsapp }: BookingFlowProps) 
           {/* RIGHT — live tracker */}
           <div className="tracker">
             <div className="thead">
-              <span className="id mono">{submitted ? "#NXV-2026-0481" : "ORDER PREVIEW"}</span>
+              <span className="id mono">{submitted ? "#FBS-2026-0481" : "ORDER PREVIEW"}</span>
               <span className="live"><i></i>{submitted ? "LIVE" : "WAITING"}</span>
             </div>
 

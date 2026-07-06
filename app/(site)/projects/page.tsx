@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { listPublishedProjects } from "@/lib/db/repositories/projects";
 
 export const dynamic = "force-dynamic";
@@ -35,7 +36,7 @@ export default async function ProjectsPage() {
           </div>
         )}
         <div style={{ marginTop: 40 }}>
-          <a className="btn btn--fire btn--lg" href="/#book"><span className="sheen"></span>Book a fix</a>
+          <Link className="btn btn--fire btn--lg" href="/#book"><span className="sheen"></span>Book a fix</Link>
         </div>
       </div>
     </main>
