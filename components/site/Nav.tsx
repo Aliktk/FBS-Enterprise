@@ -27,7 +27,7 @@ export function Nav() {
     <nav className={"nav" + (solid ? " solid" : "")}>
       <a className="brand" href="#top">
         <span className="mk">⚡</span>
-        <span className="nm"><b>{BRAND.short}</b><small>TECHNICAL · {BRAND.city}</small></span>
+        <span className="nm"><b>{BRAND.short}</b><small>ENTERPRISES · {BRAND.city}</small></span>
       </a>
       <div className="links">
         {LINKS.map((l) => <a key={l.href} href={l.href}>{l.label}</a>)}

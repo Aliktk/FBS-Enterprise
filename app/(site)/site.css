@@ -73,7 +73,7 @@ html{scroll-behavior:smooth}
 .brand .nm{line-height:1}
 .brand .nm b{font-family:var(--font-anton),'Anton',sans-serif;font-weight:400;font-size:19px;letter-spacing:.04em}
 .brand .nm small{display:block;font-family:var(--font-space),'Space Grotesk',monospace;font-size:9px;letter-spacing:.32em;color:var(--muted);margin-top:2px}
-.nav .links{display:flex;gap:26px;margin-left:18px}
+.nav .links{display:flex;gap:26px;position:absolute;left:50%;transform:translateX(-50%)}
 .nav .links a{font-size:14px;color:var(--muted);transition:.2s;position:relative}
 .nav .links a:hover{color:var(--ink)}
 .nav .links a::after{content:'';position:absolute;left:0;right:100%;bottom:-6px;height:2px;background:var(--orange);transition:right .3s var(--ease)}
