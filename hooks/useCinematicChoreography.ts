@@ -6,12 +6,18 @@ import { scrollToId } from "@/lib/site-nav";
  * Ports the prototype's global App() effect: scroll-driven --p / --kb,
  * mouse parallax + 3D tilt, IntersectionObserver reveals, the "Book this
  * service" click delegation, and the animation gate (.anim on .site-root).
+ *
+ * The reveal observer, click delegation and entrance gate run on every device.
+ * The mouse-parallax + scroll-zoom engine (which recomputes getBoundingClientRect
+ * every frame) is DESKTOP-POINTER ONLY — on touch / small screens it produced
+ * scroll jank while doing nothing useful (mousemove never fires on touch), so
+ * those devices get the settled static composition instead.
  */
 export function useCinematicChoreography() {
   useEffect(() => {
     const root = document.querySelector<HTMLElement>(".site-root");
 
-    // reveal on scroll
+    // reveal on scroll (cheap — runs everywhere)
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -36,7 +42,31 @@ export function useCinematicChoreography() {
     };
     document.addEventListener("click", onClick);
 
-    // choreography engine
+    // animation gate — engage entrance animations once the clock advances
+    const t0 = (document.timeline && document.timeline.currentTime) || 0;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const t1 = (document.timeline && document.timeline.currentTime) || 0;
+        if (typeof t1 === "number" && typeof t0 === "number" && t1 > t0 + 4) {
+          root?.classList.add("anim");
+        }
+      });
+    });
+
+    // Touch / small-screen / reduced-motion: skip the heavy parallax engine.
+    // CSS renders these sections in their settled state (see the ≤760px block).
+    const lite =
+      window.matchMedia("(pointer: coarse)").matches ||
+      window.matchMedia("(max-width: 760px)").matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (lite) {
+      return () => {
+        io.disconnect();
+        document.removeEventListener("click", onClick);
+      };
+    }
+
+    // choreography engine (desktop pointers only)
     const stage = document.querySelector<HTMLElement>("[data-stage]");
     const orbit = document.querySelector<HTMLElement>("[data-orbit]");
     const chips = orbit ? Array.from(orbit.querySelectorAll<HTMLElement>(".chip3d")) : [];
@@ -87,22 +117,12 @@ export function useCinematicChoreography() {
     window.addEventListener("scroll", onScroll, { passive: true });
     apply();
 
-    // animation gate — engage entrance animations once the clock advances
-    const t0 = (document.timeline && document.timeline.currentTime) || 0;
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        const t1 = (document.timeline && document.timeline.currentTime) || 0;
-        if (typeof t1 === "number" && typeof t0 === "number" && t1 > t0 + 4) {
-          root?.classList.add("anim");
-        }
-      });
-    });
-
     return () => {
       io.disconnect();
       document.removeEventListener("click", onClick);
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
     };
   }, []);
 }

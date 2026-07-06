@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Anton, Sora, Space_Grotesk, Caveat } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
@@ -23,6 +23,17 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: { icon: "/favicon.ico" },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  colorScheme: "dark light",
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#070A12" },
+    { media: "(prefers-color-scheme: light)", color: "#F4F0E6" },
+  ],
 };
 
 // Set the persisted theme before first paint to avoid a flash. Public-site only;

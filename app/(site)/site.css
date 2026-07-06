@@ -588,6 +588,41 @@ html[data-theme="light"] .theme-tog .lbl-d{display:inline}
   .nav .status{display:none}
 }
 
+/* ============================================================
+   MOBILE OPTIMISATION (≤760px / touch)
+   The JS parallax engine is skipped on touch (see the hook), so the
+   pinned scroll-zoom tracks would otherwise be tall dead-scroll areas.
+   Here they collapse into clean, single-screen static sections showing
+   the settled (--p:1) composition, the nav is tidied, and heavy GPU
+   effects are trimmed for smooth, glitch-free scrolling.
+   ============================================================ */
+@media(max-width:760px){
+  /* --- tidy, uncrowded nav: icon-only toggle; book via burger + FAB --- */
+  .nav{gap:12px}
+  .nav .btn--fire{display:none}
+  .theme-tog{padding:8px 10px}
+  .theme-tog .lbl-l,.theme-tog .lbl-d{display:none!important}
+
+  /* --- hero: drop the floating corner chips (overlap text + cost GPU) --- */
+  .orbit{display:none}
+
+  /* --- collapse pinned zoom/proof tracks into static flow sections --- */
+  .zoom-track,.proof-track{height:auto}
+  .zoom-sticky,.proof-sticky{position:static;height:auto;min-height:auto;
+    display:block;overflow:visible;padding:clamp(64px,13vw,96px) 16px;text-align:center}
+  .zoom-bgword,.zoom-cue,.proof-cue{display:none}
+  .zoom-stage{transform:none;margin:0 auto}
+  .zoom-copy{position:static;transform:none;opacity:1;margin-top:34px}
+  .proof-head{position:static;transform:none;opacity:1;margin-bottom:24px}
+  .proof-mosaic{transform:none;margin:0 auto}
+  .proof-mosaic .ptile{translate:none}
+  .ptile{opacity:1}
+
+  /* --- free the GPU: drop layer hints + extra backdrop blurs on mobile --- */
+  .zn-card{backdrop-filter:none}
+  .zoom-stage,.proof-mosaic,.pband .pbimg img,.chapter .scene .scene-img{will-change:auto}
+}
+
 /* ---------- public testimonials ---------- */
 .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
 @media(max-width:880px){.tgrid{grid-template-columns:1fr}}
