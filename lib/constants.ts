@@ -3,21 +3,22 @@
  * `settings` table (editable in admin); these are the seed defaults and the
  * fixed service/area/urgency enums used across the booking flow and admin.
  *
- * Business renamed from "Al Farhan Technical Solutions" -> "Nexvolt Technical Services".
+ * Business name finalized as "Farhan Business Solution Enterprise" (FBS).
+ * (Previously "Al Farhan Technical Solutions" / working name "Nexvolt Technical Services".)
  */
 
 /** Public site origin (set NEXT_PUBLIC_SITE_URL in production / Vercel). */
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://alfarhantechnical.com";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://fbsenterprise.com";
 
 export const BRAND = {
-  name: "Nexvolt Technical Services",
-  short: "NEXVOLT",
+  name: "Farhan Business Solution Enterprise",
+  short: "FBS",
   city: "PESHAWAR",
   tagline: "Whatever breaks, we fix it.",
   // Defaults — owner edits these in /admin/settings (persisted to the `settings` row).
   primaryPhone: "0311-3183186",
   whatsappNumber: "0311-3183186",
-  email: "owner@nexvolt.pk",
+  email: "owner@fbsenterprise.com",
   facebookUrl: "",
   instagramUrl: "",
   youtubeUrl: "",

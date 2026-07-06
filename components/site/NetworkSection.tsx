@@ -22,7 +22,7 @@ export function NetworkSection() {
         <div className="netviz reveal d2">
           <div className="ring" style={{ width: "78%", height: "78%" }}></div>
           <div className="ring" style={{ width: "52%", height: "52%" }}></div>
-          <div className="core">NEXVOLT<br />HUB</div>
+          <div className="core">FBS<br />HUB</div>
           <div className="spin">
             {nodes.slice(0, 4).map((n, i) => {
               const a = (i / 4) * 360;

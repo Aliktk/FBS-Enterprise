@@ -1,5 +1,5 @@
 -- ============================================================
--- Nexvolt Technical Services — initial schema
+-- Farhan Business Solution Enterprise — initial schema
 -- Tables, RLS policies, and the gallery storage bucket.
 -- Apply via: supabase db push   (or paste into the SQL editor)
 -- ============================================================
@@ -64,7 +64,7 @@ create table if not exists public.services (
 -- ---------- settings (single row) ----------
 create table if not exists public.settings (
   id text primary key default 'singleton',
-  business_name text not null default 'Nexvolt Technical Services',
+  business_name text not null default 'Farhan Business Solution Enterprise',
   primary_phone text not null default '',
   whatsapp_number text not null default '',
   email text not null default '',

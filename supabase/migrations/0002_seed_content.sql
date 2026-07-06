@@ -11,7 +11,7 @@ insert into public.services (key, emoji, title, description, is_new, enabled, so
 on conflict (key) do nothing;
 
 insert into public.settings (id, business_name, primary_phone, whatsapp_number, email, service_areas, coming_soon_areas, emergency_24_7)
-values ('singleton','Nexvolt Technical Services','0311-3183186','0311-3183186','owner@nexvolt.pk',
+values ('singleton','Farhan Business Solution Enterprise','0311-3183186','0311-3183186','owner@fbsenterprise.com',
   array['Hayatabad','University Town','Warsak Road','Saddar','Tehkal','Gulberg'],
   array['Charsadda','Mardan'], true)
 on conflict (id) do nothing;

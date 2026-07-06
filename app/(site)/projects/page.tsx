@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Recent technical-service projects delivered across Peshawar & KPK by Nexvolt Technical Services.",
+  description: "Recent technical-service projects delivered across Peshawar & KPK by Farhan Business Solution Enterprise.",
 };
 
 export default async function ProjectsPage() {

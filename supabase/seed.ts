@@ -69,10 +69,10 @@ const leads = [
 
 const settings = {
   id: "singleton",
-  business_name: "Nexvolt Technical Services",
+  business_name: "Farhan Business Solution Enterprise",
   primary_phone: "0311-3183186",
   whatsapp_number: "0311-3183186",
-  email: process.env.ADMIN_EMAIL || "owner@nexvolt.pk",
+  email: process.env.ADMIN_EMAIL || "owner@fbsenterprise.com",
   service_areas: ["Hayatabad", "University Town", "Warsak Road", "Saddar", "Tehkal", "Gulberg"],
   coming_soon_areas: ["Charsadda", "Mardan"],
   emergency_24_7: true,

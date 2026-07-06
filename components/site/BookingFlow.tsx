@@ -287,8 +287,8 @@ export function BookingFlow({ enabledKeys, areas, whatsapp }: BookingFlowProps) 
             <div className="tfoot">
               {submitted && stage >= 1 && stage < 4 ? (
                 <div className="tech-card">
-                  <div className="av">N</div>
-                  <div className="info"><div className="nm">Nexvolt Tech</div><div className="rt">4.9★ · 320 jobs</div></div>
+                  <div className="av">F</div>
+                  <div className="info"><div className="nm">FBS Enterprise</div><div className="rt">4.9★ · 320 jobs</div></div>
                 </div>
               ) : (
                 <span className="mono" style={{ fontSize: "12px", color: "var(--faint)" }}>

@@ -1,11 +1,11 @@
-# Nexvolt Technical Services — Website + Admin CMS
+# Farhan Business Solution Enterprise — Website + Admin CMS
 
 A cinematic, scroll-animated marketing website with an **"order a fix like you order food"**
 booking flow, a live dispatch tracker, and a **login-gated, no-code admin CMS** that lets the
 business owner run the whole site — publish job photos, manage booking leads, edit testimonials,
 toggle services, and update business details — with **zero developer involvement**.
 
-Built for **Nexvolt Technical Services**, a Peshawar-based technical-services business
+Built for **Farhan Business Solution Enterprise** (FBS), a Peshawar-based technical-services business
 (AC, solar, inverter/UPS, electrical, CCTV, plumbing, welding, civil work).
 
 > **Status:** v1 is feature-complete and runs against a live Supabase project. The architecture is
@@ -363,7 +363,7 @@ There is intentionally **no signup page**. Create admins one of three ways:
 2. `pnpm db:seed` with the service-role key + `ADMIN_EMAIL` / `ADMIN_PASSWORD` in `.env.local`.
 3. Apply `0003_admin_user.sql` while passing `app.admin_email` / `app.admin_password` Postgres settings.
 
-The connected project was bootstrapped with an `owner@nexvolt.pk` account — **rotate its password**
+The connected project was bootstrapped with an `owner@fbsenterprise.com` account — **rotate its password**
 in the Supabase dashboard. No credentials are stored in this repository.
 
 ---
@@ -470,7 +470,7 @@ flowchart LR
 1. Push this repo to GitHub.
 2. Import into **Vercel**, set the env vars from `.env.example` (use the Supabase **secret** key for
    `SUPABASE_SERVICE_ROLE_KEY` only if you use `pnpm db:seed`).
-3. Point the custom domain (e.g. `alfarhantechnical.com` / your Nexvolt domain).
+3. Point the custom domain (e.g. `fbsenterprise.com`).
 4. Gallery uploads go to Supabase Storage (Vercel's filesystem is ephemeral — already handled).
 
 ---

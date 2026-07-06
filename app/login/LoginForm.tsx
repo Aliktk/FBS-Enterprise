@@ -38,7 +38,7 @@ export function LoginForm({ redirectTo }: { redirectTo: string }) {
       <div className="head">
         <div className="mini">
           <span className="mk">⚡</span>
-          <span className="wordmark"><b>NEXVOLT</b><small>TECHNICAL · ADMIN</small></span>
+          <span className="wordmark"><b>FBS</b><small>TECHNICAL · ADMIN</small></span>
         </div>
         <h2>Welcome back</h2>
         <div className="sub">Sign in to your admin dashboard.</div>
@@ -63,7 +63,7 @@ export function LoginForm({ redirectTo }: { redirectTo: string }) {
             type="email"
             id="email"
             name="email"
-            placeholder="owner@nexvolt.pk"
+            placeholder="owner@fbsenterprise.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required

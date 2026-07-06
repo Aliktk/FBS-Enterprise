@@ -32,7 +32,7 @@ export function AdminShell({ user, newLeads, children }: AdminShellProps) {
         <aside className={"side" + (open ? " open" : "")}>
           <div className="brand">
             <span className="mk">⚡</span>
-            <span className="wordmark on-dark"><b>NEXVOLT</b><small>ADMIN PANEL</small></span>
+            <span className="wordmark on-dark"><b>FBS</b><small>ADMIN PANEL</small></span>
           </div>
           <nav className="nav">
             <div className="grp">Manage</div>
